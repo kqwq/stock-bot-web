@@ -173,7 +173,9 @@ function submit() {
     fetchDownload()
     let myInterval = setInterval(() => {
       if (!loading) {
+        console.log(`Done!`);
         clearInterval(myInterval);
+        return
       }
       fetchDownload()
     }, 25 * 1000); // Heroku allows re-submitting requests every 30 seconds
