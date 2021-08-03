@@ -176,7 +176,7 @@ function submit() {
         clearInterval(myInterval);
       }
       fetchDownload()
-    }, 25); // Heroku allows re-submitting requests every 30 seconds
+    }, 25 * 1000); // Heroku allows re-submitting requests every 30 seconds
 
 }
 
