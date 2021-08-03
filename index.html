@@ -135,18 +135,7 @@ function submit() {
       })
     }, 1000 * 5)
 
-    
-    fetchDownload()
-    let myInterval = setInterval(() => {
-      if (!loading) {
-        clearInterval(myInterval);
-      }
-      fetchDownload()
-    }, 25); // Heroku allows re-submitting requests every 30 seconds
-
-}
-
-function fetchDownload() {
+    let fetchDownload = function() {
   fetch(baseUrl + '/stonks', {
     method: 'POST',
     headers: {
@@ -179,6 +168,19 @@ function fetchDownload() {
   updateBadges()
 
 }
+
+    
+    fetchDownload()
+    let myInterval = setInterval(() => {
+      if (!loading) {
+        clearInterval(myInterval);
+      }
+      fetchDownload()
+    }, 25); // Heroku allows re-submitting requests every 30 seconds
+
+}
+
+
 </script>
 
 
