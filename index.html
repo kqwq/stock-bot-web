@@ -339,11 +339,6 @@
       checkStatusViaApi = true
     }
 
-    // Add animation to progress bar
-    handleStatus({
-      percentage: 100,
-      status: "Finished"
-    })
   };
 
 
@@ -368,9 +363,11 @@
         document.getElementById('status').innerHTML = successBootstrapDialog;
         loading = false;
 
-        // Remove progress bar animation
-        document.getElementById('progress-bar').classList.remove('progress-bar-animated')
-        document.getElementById('progress-bar').classList.remove('progress-bar-striped')
+        // Add animation to progress bar
+        handleStatus({
+          percentage: 100,
+          status: "Finished"
+        })
 
       });
 
