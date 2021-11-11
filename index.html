@@ -194,8 +194,12 @@
       await sleep(500)
       if (checkStatusViaApi) {
         let response = await fetch(baseUrl + '/lastMessage')
-        let data = await response.text()
-        handleStatus(JSON.parse(data))
+        try {
+          var data = await response.json()
+          handleStatus(data)
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   })();
