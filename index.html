@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,52 +8,64 @@
   <!-- Bootstrap 5 cdn -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <title>Document</title>
 
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <!-- Downloadjs cdn -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js" integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"
+    integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- simple-peer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.0/simplepeer.min.js"></script>
+
+
   <style>
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 30px;
-  background-color: #444;
-  line-height: 30px;
-  text-align: center;
-  padding: 8px 8px 8px 8px;
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 30px;
+      background-color: #444;
+      line-height: 30px;
+      text-align: center;
+      padding: 8px 8px 8px 8px;
 
-}
-.footer h4 {
-  font-size: 9px;
-  color: #eee
-}
-.footer i {
-  font-size:15px;
-  margin-left: 4px
-}
-.footer a {
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
-}
-.footer a:hover {
-  color: #aaa;
-  text-decoration: underline;
-}
-.footer span {
-  vertical-align: 2px;
-  margin-left: 18px;
-}
+    }
 
+    .footer h4 {
+      font-size: 9px;
+      color: #eee
+    }
+
+    .footer i {
+      font-size: 15px;
+      margin-left: 4px
+    }
+
+    .footer a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .footer a:hover {
+      color: #aaa;
+      text-decoration: underline;
+    }
+
+    .footer span {
+      vertical-align: 2px;
+      margin-left: 18px;
+    }
   </style>
 
 </head>
+
 <body>
   <!-- Bootstrap template with text field and button -->
   <!-- Website name -->
@@ -73,8 +86,9 @@
           <div class="form-group">
             <label for="ticker">Comma-seperated Ticker Symbol(s)</label>
             <!-- Capitalize input -->
-            <input style="max-width: 100%;" type="text" class="form-control" id="ticker" placeholder="e.g. TSLA, MSFT" onkeyup="this.value = this.value.toUpperCase().split(/\W+/gi).join(', ').trim(); updateBadges()">
-            
+            <input style="max-width: 100%;" type="text" class="form-control" id="ticker" placeholder="e.g. TSLA, MSFT"
+              onkeyup="this.value = this.value.toUpperCase().split(/\W+/gi).join(', ').trim(); updateBadges()">
+
             <!-- Display bootstrap badges with ticker symbol -->
             <div id="ticker-badges" class="badge-group">
               <span id="ticker-badge" class="badge badge-pill badge-warning">None</span>
@@ -103,151 +117,185 @@
       </div>
     </div>
 
-    <hr/>
+    <hr />
     <div class="row">
-      <!-- Status message -->
       <div class="col-md-4">
-        <span id='status'>Submit request above</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="text-center">
-            <!-- Github, Twitter, LinkedIn -->
-            <span>Follow me</span>
-            <a href="https://github.com/GitHubium" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://example.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/kqwq/" target="_blank"><i class="fab fa-linkedin"></i></a>
-           
-            <!-- Discord -->
-            <span>Join the conversation</span>
-            <a href="https://discord.gg/M6eCAFH" target="_blank"><i class="fab fa-discord"></i></a>
-
-             <!-- Email -->
-             <span>Contact</span>
-             <a href="mailto:kylew864@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
-             
-          </h4>
+        <!-- Progress bar with percentage and text -->
+        <span id='status'>Generating WebRTC offer</span>
+        <div class="progress">
+          <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+            <span id="progress-bar-text">0%</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="text-center">
+              <!-- Github, Twitter, LinkedIn -->
+              <span>Follow me</span>
+              <a href="https://github.com/GitHubium" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://example.com" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.linkedin.com/in/kqwq/" target="_blank"><i class="fab fa-linkedin"></i></a>
+
+              <!-- Discord -->
+              <span>Join the conversation</span>
+              <a href="https://discord.gg/M6eCAFH" target="_blank"><i class="fab fa-discord"></i></a>
+
+              <!-- Email -->
+              <span>Contact</span>
+              <a href="mailto:kylew864@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 
 
 </body>
 
-  
+
 </body>
 <script>
-var baseUrl = 'https://stock-bot-web-backend.herokuapp.com'
-var loading = false
-var secondsRemaining = 0
-
-setInterval(function() {
-  // Update status message
-  if (!loading) {
-    return
-  }
-  var timeLeft = document.getElementById('seconds-remaining');
-  if (timeLeft) {
-    timeLeft.innerHTML = secondsRemaining;
-    secondsRemaining -= 1;
-  }
-}, 1000);
 
 
-function submit() {
-  if (loading) {
-    alert("Request already sent. Please wait for request to finish or reload this page.")
-    return
-  }
 
-
-  // Set status to loading
-  document.getElementById('status').innerHTML = 'Loading...';
-
-  // Get the ticker symbols
-  var tickers = document.getElementById('ticker').value.split(', ');
-  if (tickers.length == 0) {
-    alert("Please enter at least one ticker symbol.");
-    return
-  }
-
-  loading = true
-
-  // Submit API request to my server
-  setTimeout(() => {
-    if (!loading) return
-    fetch(baseUrl + '/stonkshowlong')
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function(seconds) {
-        console.log('received seconds ' + seconds);
-        if (loading) {
-          secondsRemaining = parseInt(seconds) - 5 // Because I send this request 5 seconds after
-                // Set status to time remaining
-      let timeRemainingDialog = `<div class="alert alert-secondary" role="alert">
-        <strong id="seconds-remaining">${seconds}</strong> seconds remaining
-      </div>`;
-      document.getElementById('status').innerHTML = timeRemainingDialog;
-        }
-      })
-    }, 1000 * 5)
-
-    let fetchDownload = function() {
-  fetch(baseUrl + '/stonks', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'cors': 'true'
-    },
-    body: JSON.stringify({
-      tickers: tickers,
-      passcode: 'sourpatchkids27'
+function sendOffer(offer) {
+    fetch(baseUrl + '/sendOffer', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'cors': 'true'
+      },
+      body: JSON.stringify(offer)
     })
-  })
-  .then((response) => response.blob())
-    .then((blob) => {
-      // Get current time in readable format
-      let currentDate = new Date().toLocaleDateString()
+  }
 
-      download(blob, 'Options_' + currentDate + '.xlsx');
 
-      // Set status to done
-      let successBootstrapDialog = `<div class="alert alert-success" role="alert">
+  var baseUrl = 'https://localhost:3000' //'https://stock-bot-web-backend.herokuapp.com'
+  var loading = false
+  var secondsRemaining = 0
+
+
+    // Setup webRTC
+    var peer = new SimplePeer({
+    initiator: true,
+    trickle: false
+  }).on('signal', function (data) {
+    // Send signal to server
+    sendOffer(data)
+    console.log('signal sent')
+  }).on('connect', function () {
+    console.log('connect')
+    document.getElementById('status').innerHTML = '<span class="text-success">Connected</span>'
+  }).on('data', function (data) {
+    let data_json = JSON.parse(data)
+    if (data_json.status) {
+      document.getElementById('status').innerHTML = data_json.status
+    }
+    if (data_json.percentage) {
+      document.getElementById('progress-bar-text').innerHTML = data_json.percentage + "%"
+      document.getElementById('progress-bar').style.width = data_json.percentage + "%"
+    }
+  }).on('error', function (err) {
+    console.error(err)
+    document.getElementById('status').innerHTML = `<span class="text-danger">${err}</span>`
+  });
+
+
+  setInterval(function () {
+    // Update status message
+    if (!loading) {
+      return
+    }
+    var timeLeft = document.getElementById('seconds-remaining');
+    if (timeLeft) {
+      timeLeft.innerHTML = secondsRemaining;
+      secondsRemaining -= 1;
+    }
+  }, 1000);
+
+
+  function submit() {
+    if (loading) {
+      alert("Request already sent. Please wait for request to finish or reload this page.")
+      return
+    }
+
+
+    // Get the ticker symbols
+    var tickers = document.getElementById('ticker').value.split(', ');
+    if (tickers.length == 0) {
+      alert("Please enter at least one ticker symbol.");
+      return
+    }
+
+    loading = true
+
+
+  }
+
+
+
+
+  // fetchDownload()
+  // let myInterval = setInterval(() => {
+  //   if (!loading) {
+  //     console.log(`Done!`);
+  //     clearInterval(myInterval);
+  //     return
+  //   }
+  //   fetchDownload()
+  // }, 25 * 1000); // Heroku allows re-submitting requests every 30 seconds
+  function fetchDownload() {
+    fetch(baseUrl + '/stonks', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'cors': 'true'
+      },
+      body: JSON.stringify({
+        tickers: tickers,
+        passcode: 'sourpatchkids27',
+      })
+    })
+
+
+  }
+
+  function getSheet() {
+
+    fetch(baseUrl + '/getSheet')
+      .then((response) => response.blob())
+      .then((blob) => {
+        // Get current time in readable format
+        let currentDate = new Date().toLocaleDateString()
+
+        download(blob, 'Options_' + currentDate + '.xlsx');
+
+        // Set status to done
+        let successBootstrapDialog = `<div class="alert alert-success" role="alert">
         <strong>Success!</strong> Your options file has been downloaded.
       </div>`;
-      document.getElementById('status').innerHTML = successBootstrapDialog;
-      loading= false;
-    });
+        document.getElementById('status').innerHTML = successBootstrapDialog;
+        loading = false;
+      });
 
-  // Clear the ticker symbol input
-  document.getElementById('ticker').value = '';
-  updateBadges()
+    // Clear the ticker symbol input
+    document.getElementById('ticker').value = '';
+    updateBadges()
+  }
 
-}
-
-    
-    fetchDownload()
-    let myInterval = setInterval(() => {
-      if (!loading) {
-        console.log(`Done!`);
-        clearInterval(myInterval);
-        return
-      }
-      fetchDownload()
-    }, 25 * 1000); // Heroku allows re-submitting requests every 30 seconds
-
-}
 
 
 </script>
