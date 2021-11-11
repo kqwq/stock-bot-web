@@ -182,24 +182,21 @@
 
   var baseUrl = 'https://stock-bot-web-backend.herokuapp.com'
   var loading = false
-  // var secondsRemaining = 0
+  var peerIsConnected = false
+  var checkStatusViaApi = false
 
+  (async function () {
+    while (true) {
+      await sleep(500)
+      if (checkStatusViaApi) {
+        let response = await fetch(baseUrl + '/checkStatusViaApi')
+        let data = await response.json()
+        handleStatus(data)
+      }
+    }
+  })();
 
-    // Setup webRTC
-    var peer = new SimplePeer({
-    initiator: true,
-    trickle: false
-  }).on('signal', function (data) {
-    // Send signal to server
-    sendOffer(data)
-    
-    console.log(JSON.stringify(data));
-    console.log('signal sent')
-  }).on('connect', function () {
-    console.log('connect')
-    document.getElementById('status').innerHTML = '<span class="text-success">Connected</span>'
-  }).on('data', function (data) {
-    let data_json = JSON.parse(data.toString())
+  function handleStatus(data_json) {
     if (data_json.status) {
       document.getElementById('status').innerHTML = data_json.status
     }
@@ -213,9 +210,32 @@
     if (data_json.tickerDoesNotExist) {
       console.log(`Ticker ${data_json.tickerDoesNotExist} does not exist`)
     }
+  }
+
+
+    // Setup webRTC
+  var peer = new SimplePeer({
+    initiator: true,
+    trickle: false
+  }).on('signal', function (data) {
+    // Send signal to server
+    sendOffer(data)
+    console.log(JSON.stringify(data));
+    console.log('signal sent')
+  }).on('connect', function () {
+    console.log('connect')
+    peerIsConnected = true
+    document.getElementById('status').innerHTML = '<span class="text-success">Connected</span>'
+  }).on('data', function (data) {
+    let data_json = JSON.parse(data.toString())
+    handleStatus(data_json)
   }).on('error', function (err) {
     console.error(err)
     document.getElementById('status').innerHTML = `<span class="text-danger">${err}</span>`
+  }).on('close', function () {
+    console.log('close')
+    peerIsConnected = false
+    document.getElementById('status').innerHTML = '<span class="text-danger">Disconnected</span>'
   });
 
 
@@ -249,7 +269,7 @@ function sendOffer(offer) {
     }).catch(function (err) {
       console.log(err)
     })
-  }
+  };
 
 
 
@@ -278,7 +298,13 @@ function sendOffer(offer) {
         passcode: 'sourpatchkids27',
       })
     })
-  }
+
+    if (!peerIsConnected) {
+      checkStatusViaApi = true
+    }
+  };
+
+
 
 
 
@@ -303,7 +329,7 @@ function sendOffer(offer) {
     // Clear the ticker symbol input
     document.getElementById('ticker').value = '';
     updateBadges()
-  }
+  };
 
 
 
