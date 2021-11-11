@@ -74,99 +74,99 @@
   <div class="container" style="margin-top: 30px">
     <div class="row">
       <div class="col-md-4">
-        <h1 class='display-4'>stock bot web</h1>    
+        <h1 class='display-4'>stock bot web</h1>
+      </div>
     </div>
-  </div>
 
 
-  <!-- Select ticker symbol -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <form class="form-horizontal" onsubmit="return false">
-          <div class="form-group">
-            <label for="ticker">Comma-seperated Ticker Symbol(s)</label>
-            <!-- Capitalize input -->
-            <input style="max-width: 100%;" type="text" class="form-control" id="ticker" placeholder="e.g. TSLA, MSFT"
-              onkeyup="this.value = this.value.toUpperCase().split(/\W+/gi).join(', ').trim(); updateBadges()">
+    <!-- Select ticker symbol -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <form class="form-horizontal" onsubmit="return false">
+            <div class="form-group">
+              <label for="ticker">Comma-seperated Ticker Symbol(s)</label>
+              <!-- Capitalize input -->
+              <input style="max-width: 100%;" type="text" class="form-control" id="ticker" placeholder="e.g. TSLA, MSFT"
+                onkeyup="this.value = this.value.toUpperCase().split(/\W+/gi).join(', ').trim(); updateBadges()">
 
-            <!-- Display bootstrap badges with ticker symbol -->
-            <div id="ticker-badges" class="badge-group">
-              <span id="ticker-badge" class="badge badge-pill badge-warning">None</span>
-            </div>
-            <script>
-              function updateBadges() {
+              <!-- Display bootstrap badges with ticker symbol -->
+              <div id="ticker-badges" class="badge-group">
+                <span id="ticker-badge" class="badge badge-pill bg-dark">None</span>
+              </div><br>
+              <script>
+                function updateBadges() {
 
-                var ticker_badges = document.getElementById('ticker-badges');
-                ticker_badges.innerHTML = '';
-                let values = document.getElementById('ticker').value.split(', ');
-                for (let i = 0; i < values.length; i++) {
-                  // Add a badge for each ticker symbol
-                  var ticker_badge = document.createElement('span');
-                  ticker_badge.innerHTML = values[i];
-                  ticker_badge.className = "badge badge-secondary";
-                  ticker_badge.style.margin = "2px"
-                  ticker_badges.appendChild(ticker_badge);
+                  var ticker_badges = document.getElementById('ticker-badges');
+                  ticker_badges.innerHTML = '';
+                  let values = document.getElementById('ticker').value.split(', ');
+                  for (let i = 0; i < values.length; i++) {
+                    // Add a badge for each ticker symbol
+                    var ticker_badge = document.createElement('span');
+                    ticker_badge.innerHTML = values[i];
+                    ticker_badge.classList.add("badge", "badge-pill", "bg-secondary")
+                    ticker_badge.style.margin = "2px"
+                    ticker_badges.appendChild(ticker_badge);
+                  }
+
                 }
-
-              }
-            </script>
-          </div>
-        </form>
-        <!-- Submit button without page refresh -->
-        <button type="button" class="btn btn-primary" onclick="submit();return false">Submit</button>
-      </div>
-    </div>
-
-    <hr />
-    <div class="row">
-      <div class="col-md-4">
-        <!-- Progress bar with percentage and text -->
-        <span id='status'>Connecting...</span>
-        <div class="progress">
-          <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-            <span id="progress-bar-text">0%</span>
-          </div>
-        </div>
-         
-      </div>
-    </div>
-
-         <!-- Align right -->
-         <div class="float-right" style="bottom:38px;position:fixed;">
-          Powered by 
-          <a href="https://www.w3.org/TR/webrtc/" target="_blank">
-            <img class="float-right" src="https://upload.wikimedia.org/wikipedia/commons/6/68/WebRTC_Logo.svg" alt="webrtc"
-              style="width: 100px;"></a>
-              </div>
-
-    <!-- Footer -->
-    <div class="footer">
-   
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h4 class="text-center">
-              <!-- Github, Twitter, LinkedIn -->
-              <span>Follow me</span>
-              <a href="https://github.com/GitHubium" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://example.com" target="_blank"><i class="fab fa-twitter"></i></a>
-              <a href="https://www.linkedin.com/in/kqwq/" target="_blank"><i class="fab fa-linkedin"></i></a>
-
-              <!-- Discord -->
-              <span>Join the conversation</span>
-              <a href="https://discord.gg/M6eCAFH" target="_blank"><i class="fab fa-discord"></i></a>
-
-              <!-- Email -->
-              <span>Contact</span>
-              <a href="mailto:kylew864@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
-
-            </h4>
-          </div>
+              </script>
+            </div>
+          </form>
+          <!-- Submit button without page refresh -->
+          <button type="button" class="btn btn-success" onclick="submit();return false">Submit</button>
         </div>
       </div>
-    </div>
+
+      <hr />
+      <div class="row">
+        <div class="col-md-4">
+          <!-- Progress bar with percentage and text -->
+          <span id='status'>Connecting...</span>
+          <div class="progress">
+            <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+              <span id="progress-bar-text">0%</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Align right -->
+      <div class="float-right" style="bottom:38px;position:fixed;">
+        Powered by
+        <a href="https://www.w3.org/TR/webrtc/" target="_blank">
+          <img class="float-right" src="https://upload.wikimedia.org/wikipedia/commons/6/68/WebRTC_Logo.svg"
+            alt="webrtc" style="width: 100px;"></a>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="text-center">
+                <!-- Github, Twitter, LinkedIn -->
+                <span>Follow me</span>
+                <a href="https://github.com/GitHubium" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://example.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/kqwq/" target="_blank"><i class="fab fa-linkedin"></i></a>
+
+                <!-- Discord -->
+                <span>Join the conversation</span>
+                <a href="https://discord.gg/M6eCAFH" target="_blank"><i class="fab fa-discord"></i></a>
+
+                <!-- Email -->
+                <span>Contact</span>
+                <a href="mailto:kylew864@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -193,9 +193,9 @@
     while (true) {
       await sleep(500)
       if (checkStatusViaApi) {
-        let response = await fetch(baseUrl + '/checkStatusViaApi')
-        let data = await response.json()
-        handleStatus(data)
+        let response = await fetch(baseUrl + '/lastMessage')
+        let data = await response.text()
+        handleStatus(JSON.parse(data))
       }
     }
   })();
@@ -207,17 +207,49 @@
     if (data_json.percentage) {
       document.getElementById('progress-bar-text').innerHTML = parseInt(data_json.percentage).toFixed(1) + "%"
       document.getElementById('progress-bar').style.width = data_json.percentage + "%"
-      if (data_json.percentage == 100) {
+      if (data_json.percentage == 99) {
         getSheet()
+      } else if (data_json.percentage == 100) {
+        // Remove progress bar animation
+        document.getElementById('progress-bar').classList.remove('progress-bar-animated')
+        document.getElementById('progress-bar').classList.remove('progress-bar-striped')
+      } else {
+
+        // Select n first ticker symbols based on percentage
+        let ticker_badges = document.getElementById('ticker-badges').children
+        for (let i = 0; i < ticker_badges.length * data_json.percentage / 100; i++) {
+          if (ticker_badges[i].classList.contains('bg-secondary')) {
+            ticker_badges[i].classList.remove('bg-secondary')
+            ticker_badges[i].classList.add('bg-success')
+          }
+        }
       }
+
     }
     if (data_json.tickerDoesNotExist) {
       console.log(`Ticker ${data_json.tickerDoesNotExist} does not exist`)
+      // search for badge with ticker symbol, make it red
+      let badges = Array.from(document.getElementById(`ticker-badges`).children)
+      for (let i = 0; i < badges.length; i++) {
+        let badge = badges[i]
+        if (badge.innerHTML == data_json.tickerDoesNotExist) {
+
+
+          if (badge.classList.contains('bg-secondary')) {
+            badge.classList.remove('bg-secondary')
+          } else if (badge.classList.contains('bg-success')) {
+            badge.classList.remove('bg-success')
+          }
+          badge.classList.add('bg-dark')
+        }
+      }
+
+
     }
   }
 
 
-    // Setup webRTC
+  // Setup webRTC
   var peer = new SimplePeer({
     initiator: true,
     trickle: false
@@ -255,8 +287,8 @@
   //   }
   // }, 1000);
 
-  
-function sendOffer(offer) {
+
+  function sendOffer(offer) {
     fetch(baseUrl + '/sendOffer', {
       method: 'POST',
       headers: {
@@ -306,6 +338,12 @@ function sendOffer(offer) {
     if (!peerIsConnected) {
       checkStatusViaApi = true
     }
+
+    // Add animation to progress bar
+    handleStatus({
+      percentage: 100,
+      status: "Finished"
+    })
   };
 
 
@@ -313,6 +351,7 @@ function sendOffer(offer) {
 
 
   function getSheet() {
+    checkStatusViaApi = false
 
     fetch(baseUrl + '/getSheet')
       .then((response) => response.blob())
@@ -328,11 +367,13 @@ function sendOffer(offer) {
       </div>`;
         document.getElementById('status').innerHTML = successBootstrapDialog;
         loading = false;
+
+        // Remove progress bar animation
+        document.getElementById('progress-bar').classList.remove('progress-bar-animated')
+        document.getElementById('progress-bar').classList.remove('progress-bar-striped')
+
       });
 
-    // Clear the ticker symbol input
-    document.getElementById('ticker').value = '';
-    updateBadges()
   };
 
 
