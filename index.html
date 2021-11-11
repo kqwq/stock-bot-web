@@ -208,6 +208,9 @@
         getSheet()
       }
     }
+    if (dataa_json.tickerDoesNotExist) {
+      console.log(`Ticker ${data_json.tickerDoesNotExist} does not exist`)
+    }
   }).on('error', function (err) {
     console.error(err)
     document.getElementById('status').innerHTML = `<span class="text-danger">${err}</span>`
@@ -236,6 +239,13 @@ function sendOffer(offer) {
         'cors': 'true'
       },
       body: JSON.stringify(offer)
+    }).then(function (response) {
+      return response.json()
+    }).then(function (data) {
+      console.log(data)
+      peer.signal(data)
+    }).catch(function (err) {
+      console.log(err)
     })
   }
 
@@ -273,7 +283,7 @@ function sendOffer(offer) {
   //   fetchDownload()
   // }, 25 * 1000); // Heroku allows re-submitting requests every 30 seconds
   function fetchDownload() {
-    fetch(baseUrl + '/stonks', {
+    fetch(baseUrl + '/getStocks', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -288,7 +298,7 @@ function sendOffer(offer) {
 
 
   }
-
+ 
   function getSheet() {
 
     fetch(baseUrl + '/getSheet')
