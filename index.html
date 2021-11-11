@@ -185,6 +185,10 @@
   var peerIsConnected = false
   var checkStatusViaApi = false;
 
+  const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  };
+
   (async function () {
     while (true) {
       await sleep(500)
