@@ -258,8 +258,6 @@ function sendOffer(offer) {
       alert("Request already sent. Please wait for request to finish or reload this page.")
       return
     }
-
-
     // Get the ticker symbols
     var tickers = document.getElementById('ticker').value.split(', ');
     if (tickers.length == 0) {
@@ -268,23 +266,6 @@ function sendOffer(offer) {
     }
 
     loading = true
-
-
-  }
-
-
-
-
-  // fetchDownload()
-  // let myInterval = setInterval(() => {
-  //   if (!loading) {
-  //     console.log(`Done!`);
-  //     clearInterval(myInterval);
-  //     return
-  //   }
-  //   fetchDownload()
-  // }, 25 * 1000); // Heroku allows re-submitting requests every 30 seconds
-  function fetchDownload() {
     fetch(baseUrl + '/getStocks', {
       method: 'POST',
       headers: {
@@ -297,10 +278,10 @@ function sendOffer(offer) {
         passcode: 'sourpatchkids27',
       })
     })
-
-
   }
- 
+
+
+
   function getSheet() {
 
     fetch(baseUrl + '/getSheet')
