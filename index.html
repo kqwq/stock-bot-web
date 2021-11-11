@@ -212,7 +212,9 @@
       document.getElementById('progress-bar-text').innerHTML = parseInt(data_json.percentage).toFixed(1) + "%"
       document.getElementById('progress-bar').style.width = data_json.percentage + "%"
       if (data_json.percentage == 99) {
-        getSheet()
+        setTimeout(() => {
+          getSheet()
+        }, 2000)
       } else if (data_json.percentage == 100) {
         // Remove progress bar animation
         document.getElementById('progress-bar').classList.remove('progress-bar-animated')
