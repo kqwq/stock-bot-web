@@ -199,18 +199,18 @@
     console.log('connect')
     document.getElementById('status').innerHTML = '<span class="text-success">Connected</span>'
   }).on('data', function (data) {
-    let data_json = JSON.parse(data)
+    let data_json = JSON.parse(data.toString())
     if (data_json.status) {
       document.getElementById('status').innerHTML = data_json.status
     }
     if (data_json.percentage) {
-      document.getElementById('progress-bar-text').innerHTML = data_json.percentage + "%"
+      document.getElementById('progress-bar-text').innerHTML = parseInt(data_json.percentage).toFixed(1) + "%"
       document.getElementById('progress-bar').style.width = data_json.percentage + "%"
       if (data_json.percentage == 100) {
         getSheet()
       }
     }
-    if (dataa_json.tickerDoesNotExist) {
+    if (data_json.tickerDoesNotExist) {
       console.log(`Ticker ${data_json.tickerDoesNotExist} does not exist`)
     }
   }).on('error', function (err) {
