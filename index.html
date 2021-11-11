@@ -240,7 +240,7 @@ function sendOffer(offer) {
         'Content-Type': 'application/json',
         'cors': 'true'
       },
-      body: JSON.stringify(offer)
+      body: offer
     }).then(function (response) {
       return response.json()
     }).then(function (data) {
