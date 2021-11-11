@@ -192,6 +192,8 @@
   }).on('signal', function (data) {
     // Send signal to server
     sendOffer(data)
+    
+    console.log(JSON.stringify(data));
     console.log('signal sent')
   }).on('connect', function () {
     console.log('connect')
