@@ -135,10 +135,13 @@
 
       <!-- Align right -->
       <div class="float-right" style="bottom:38px;position:fixed;">
-        Powered by
+        
         <a href="https://www.w3.org/TR/webrtc/" target="_blank">
           <img class="float-right" src="https://upload.wikimedia.org/wikipedia/commons/6/68/WebRTC_Logo.svg"
             alt="webrtc" style="width: 100px;"></a>
+
+            <!-- Orange text "hosted locally at ${baseUrl}"-->
+            <p class="float-right" style="color:orangered">Hosted locally at <span style="color:gray" id="text-base-url">...</span></p>
       </div>
 
       <!-- Footer -->
@@ -173,14 +176,13 @@
 
 </body>
 
-
-</body>
 <script>
 
 
 
 
-  var baseUrl = 'https://stock-bot-web-backend.herokuapp.com'
+  // var baseUrl = 'https://stock-bot-web-backend.herokuapp.com'
+  var baseUrl = "http://192.168.1.177:3000"
   var loading = false
   var peerIsConnected = false
   var checkStatusViaApi = false;
@@ -379,6 +381,9 @@
       });
 
   };
+
+  // Set text base url
+  document.getElementById('text-base-url').innerHTML = baseUrl;
 
 
 
